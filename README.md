@@ -38,6 +38,13 @@
         - ./controllers/auth.js: validating for email sign up
         post request
 
+    2. Other Features:
+        a. Customize Validator:
+            - Code in 3rd Commit
+            - ./routes/auth.js:
+                +, Custom error message, see the use of withMessage()
+                +, Custom validator, see the use of custom()
+
 ## IV. Other Notes:
 
     What's in this module ?

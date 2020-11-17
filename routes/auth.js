@@ -15,8 +15,23 @@ router.post("/login", authController.postLogin);
     Adding extra middleware for validation
     Check for field's name in the <input> tag
     in the view folder
+
+    withMessage allow you to customize error message
+    .custom allow you to customize error and error message
 */
-router.post("/signup", check("email").isEmail(), authController.postSignup);
+router.post(
+  "/signup",
+  check("email")
+    .isEmail()
+    .withMessage("Please enter a valid email")
+    .custom((value, { req }) => {
+      if (value === "test@gmail.com") {
+        throw new Error("This email address is forbidden");
+      }
+      return true;
+    }),
+  authController.postSignup
+);
 
 router.post("/logout", authController.postLogout);
 

@@ -89,10 +89,6 @@ exports.postSignup = (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
   const confirmPassword = req.body.confirmPassword;
-  /*
-    Validating email on request, 
-    also see set up in ./routes/auth.js
-  */
   const errors = validationResult(req);
 
   // console.log(errors);
@@ -102,7 +98,7 @@ exports.postSignup = (req, res, next) => {
     return res.status(422).render("auth/signup", {
       path: "/signup",
       pageTitle: "Signup",
-      errorMessage: errors.array(),
+      errorMessage: errors.array()[0].msg,
     });
   }
 
