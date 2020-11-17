@@ -5,6 +5,7 @@ const nodemailer = require("nodemailer");
   This is a built-in library for generating tokens
 */
 const crypto = require("crypto");
+const { validationResult } = require("express-validator/check");
 
 /*
   Setting up to send email
@@ -88,6 +89,22 @@ exports.postSignup = (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
   const confirmPassword = req.body.confirmPassword;
+  /*
+    Validating email on request, 
+    also see set up in ./routes/auth.js
+  */
+  const errors = validationResult(req);
+
+  // console.log(errors);
+
+  if (!errors.isEmpty()) {
+    console.log(errors.array());
+    return res.status(422).render("auth/signup", {
+      path: "/signup",
+      pageTitle: "Signup",
+      errorMessage: errors.array(),
+    });
+  }
 
   User.findOne({ email: email })
     .then((userDoc) => {

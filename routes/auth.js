@@ -1,4 +1,5 @@
 const express = require("express");
+const { check } = require("express-validator/check");
 
 const authController = require("../controllers/auth");
 
@@ -10,7 +11,12 @@ router.get("/signup", authController.getSignup);
 
 router.post("/login", authController.postLogin);
 
-router.post("/signup", authController.postSignup);
+/*
+    Adding extra middleware for validation
+    Check for field's name in the <input> tag
+    in the view folder
+*/
+router.post("/signup", check("email").isEmail(), authController.postSignup);
 
 router.post("/logout", authController.postLogout);
 

@@ -15,11 +15,31 @@
     - $ npm install --save csurf
     - $ npm install --save connect-flash
     - $ npm install --save nodemailer
+    - $ npm install --save express-validator
+
+    full docs on express validator:
+    https://express-validator.github.io/docs/
 
 ## II. Core Concepts:
 
+    1. Application flow with validation:
+        https://drive.google.com/file/d/19_Mn9UoiHPKuJB3mEpLZM13DWz6AE09J/view?usp=sharing
+
+    2. How to Validate:
+        https://drive.google.com/file/d/14TZtbX0xL7-QCIgQ0uCN-YkTpvvZA-Ip/view?usp=sharing
+
 ## III. Module Notes:
+
+    1. Setting up validation:
+        - Code in 2nd Commit
+        - install express-validator
+        - ./routes/auth.js: passing middleware into post
+        sign up controller
+        - ./controllers/auth.js: validating for email sign up
+        post request
 
 ## IV. Other Notes:
 
     What's in this module ?
+        - Why validate ?
+        - How to validate ?
