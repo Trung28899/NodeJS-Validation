@@ -45,6 +45,11 @@
                 +, Custom error message, see the use of withMessage()
                 +, Custom validator, see the use of custom()
 
+        b. Password Validator:
+            - Code in 4th
+            - ./routes/auth.js:
+                +, See post request handler for '/signup'
+
 ## IV. Other Notes:
 
     What's in this module ?

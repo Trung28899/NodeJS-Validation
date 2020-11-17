@@ -1,5 +1,5 @@
 const express = require("express");
-const { check } = require("express-validator/check");
+const { check, body } = require("express-validator/check");
 
 const authController = require("../controllers/auth");
 
@@ -18,18 +18,33 @@ router.post("/login", authController.postLogin);
 
     withMessage allow you to customize error message
     .custom allow you to customize error and error message
+
+    See docs: 
+    https://express-validator.github.io/docs/
+    to understand more about express validator
 */
 router.post(
   "/signup",
-  check("email")
-    .isEmail()
-    .withMessage("Please enter a valid email")
-    .custom((value, { req }) => {
-      if (value === "test@gmail.com") {
-        throw new Error("This email address is forbidden");
+  [
+    check("email")
+      .isEmail()
+      .withMessage("Please enter a valid email")
+      .custom((value, { req }) => {
+        if (value === "test@gmail.com") {
+          throw new Error("This email address is forbidden");
+        }
+        return true;
+      }),
+    body("password", "Password should be from 6 to 15 characters")
+      .isLength({ min: 6, max: 15 })
+      .isAlphanumeric(),
+    body("confirmPassword").custom((value, { req }) => {
+      if (value !== req.body.password) {
+        throw new Error("Password and Confirm Password are not matching !");
       }
       return true;
     }),
+  ],
   authController.postSignup
 );
 
