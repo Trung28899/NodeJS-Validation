@@ -46,7 +46,13 @@
                 +, Custom validator, see the use of custom()
 
         b. Password Validator:
-            - Code in 4th
+            - Code in 4th Commit
+            - ./routes/auth.js:
+                +, See post request handler for '/signup'
+
+        c. Checking if email already exists (using express validator)
+            (Async Validation):
+            - Code in 5th Commit
             - ./routes/auth.js:
                 +, See post request handler for '/signup'
 
