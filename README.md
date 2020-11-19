@@ -56,6 +56,9 @@
             - ./routes/auth.js:
                 +, See post request handler for '/signup'
 
+        d. Validate login:
+            - Code in 6th Commit
+
 ## IV. Other Notes:
 
     What's in this module ?

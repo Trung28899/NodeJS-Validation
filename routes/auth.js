@@ -8,20 +8,28 @@ router.get("/login", authController.getLogin);
 
 router.get("/signup", authController.getSignup);
 
-router.post("/login", authController.postLogin);
+router.post("/logout", authController.postLogout);
 
-/*
-    Adding extra middleware for validation
-    Check for field's name in the <input> tag
-    in the view folder
+router.get("/reset", authController.getReset);
 
-    withMessage allow you to customize error message
-    .custom allow you to customize error and error message
+router.post("/reset", authController.postReset);
 
-    See docs: 
-    https://express-validator.github.io/docs/
-    to understand more about express validator
-*/
+router.get("/reset/:token", authController.getNewPassword);
+
+router.post("/new-password", authController.postNewPassword);
+
+router.post(
+  "/login",
+  [
+    check("email").isEmail().withMessage("Value is not an Email Dawg !"),
+    body("password", "Password should be from 6 to 15 characters").isLength({
+      min: 6,
+      max: 15,
+    }),
+  ],
+  authController.postLogin
+);
+
 router.post(
   "/signup",
   [
@@ -49,15 +57,5 @@ router.post(
   ],
   authController.postSignup
 );
-
-router.post("/logout", authController.postLogout);
-
-router.get("/reset", authController.getReset);
-
-router.post("/reset", authController.postReset);
-
-router.get("/reset/:token", authController.getNewPassword);
-
-router.post("/new-password", authController.postNewPassword);
 
 module.exports = router;
