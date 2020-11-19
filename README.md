@@ -59,6 +59,12 @@
         d. Validate login:
             - Code in 6th Commit
 
+        e. Keeping user inputs after a failed requests:
+            - Code in 7th Commit
+            - See oldInput in getLogin() and postLogin() in
+            ./controllers/auth.js
+            - See ./views/auth/signup.js for how to get the values
+
 ## IV. Other Notes:
 
     What's in this module ?
