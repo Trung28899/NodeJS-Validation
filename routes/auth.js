@@ -18,14 +18,27 @@ router.get("/reset/:token", authController.getNewPassword);
 
 router.post("/new-password", authController.postNewPassword);
 
+/*
+  normalizeEmail() is a method for sanitizing
+  > make sure everything is in lower case
+
+  trim() is sanitizing method, make sure no
+  space in the input value
+*/
 router.post(
   "/login",
   [
-    check("email").isEmail().withMessage("Value is not an Email Dawg !"),
-    body("password", "Password should be from 6 to 15 characters").isLength({
-      min: 6,
-      max: 15,
-    }),
+    check("email")
+      .isEmail()
+      .withMessage("Value is not an Email Dawg !")
+      .normalizeEmail(),
+    body("password", "Password should be from 6 to 15 characters")
+      .isLength({
+        min: 6,
+        max: 15,
+      })
+      .isAlphanumeric()
+      .trim(),
   ],
   authController.postLogin
 );
@@ -44,16 +57,20 @@ router.post(
             );
           }
         });
-      }),
+      })
+      .normalizeEmail(),
     body("password", "Password should be from 6 to 15 characters")
       .isLength({ min: 6, max: 15 })
-      .isAlphanumeric(),
-    body("confirmPassword").custom((value, { req }) => {
-      if (value !== req.body.password) {
-        throw new Error("Password and Confirm Password are not matching !");
-      }
-      return true;
-    }),
+      .isAlphanumeric()
+      .trim(),
+    body("confirmPassword")
+      .custom((value, { req }) => {
+        if (value !== req.body.password) {
+          throw new Error("Password and Confirm Password are not matching !");
+        }
+        return true;
+      })
+      .trim(),
   ],
   authController.postSignup
 );

@@ -28,6 +28,12 @@
     2. How to Validate:
         https://drive.google.com/file/d/14TZtbX0xL7-QCIgQ0uCN-YkTpvvZA-Ip/view?usp=sharing
 
+    3. Sanitize input:
+        - make sure input doesn't include some unwanted characters such as:
+            white space, /, etc.
+        - This depends on the requirements
+        - See III. Module Notes, 3. Sanitize Data for practical sanitization
+
 ## III. Module Notes:
 
     1. Setting up validation:
@@ -70,6 +76,12 @@
             - ./controllers/auth.js: see 'validationErrors' in
                 getLogin(), getSignUp(), postLogin() and postSignUp()
             - ./view/auth/login.ejs, signup.ejs: see 'validationErrors'
+
+        3. Sanitizing Data:
+            - Code in 9th Commit
+            - ./routes/auth.js: see post sign up and sign in
+            - Now try sign up with email having a capital letter
+                > see the result
 
 ## IV. Other Notes:
 
