@@ -77,11 +77,17 @@
                 getLogin(), getSignUp(), postLogin() and postSignUp()
             - ./view/auth/login.ejs, signup.ejs: see 'validationErrors'
 
+        g. Validation for Product Addition and Product Editing:
+            - Code in 10th Commit
+            - See ./routes/admin.js and ./controllers/admin.js for
+                the code
+
         3. Sanitizing Data:
             - Code in 9th Commit
             - ./routes/auth.js: see post sign up and sign in
             - Now try sign up with email having a capital letter
                 > see the result
+
 
 ## IV. Other Notes:
 
