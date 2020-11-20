@@ -65,6 +65,12 @@
             ./controllers/auth.js
             - See ./views/auth/signup.js for how to get the values
 
+        f. red box border validation for invalid input:
+            - Code in 8th Commit
+            - ./controllers/auth.js: see 'validationErrors' in
+                getLogin(), getSignUp(), postLogin() and postSignUp()
+            - ./view/auth/login.ejs, signup.ejs: see 'validationErrors'
+
 ## IV. Other Notes:
 
     What's in this module ?
